@@ -1,6 +1,6 @@
 import {getByText} from '@testing-library/react';
 
-import Maintenance from './Maintenance';
+import Maintenance from '@/pages/Maintenance';
 
 describe('<Maintenance>', () => {
   const getComponent = () => render(Maintenance);

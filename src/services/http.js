@@ -1,7 +1,4 @@
-const {BASE_URL} = process.env;
-
-const getBaseUrl = () => BASE_URL;
-
+/* global BASE_URL */
 const getHeaders = () => {
   const token = localStorage.getItem('id_token');
   const headers = {
@@ -12,15 +9,12 @@ const getHeaders = () => {
   if (token) {
     headers.Authorization = `Bearer ${token}`;
   }
-  if (process.env.CLIENT_ID && process.env.NODE_ENV === 'development') {
-    headers.clientId = process.env.CLIENT_ID;
-  }
 
   return headers;
 };
 
 const saveData = (url, data, method) =>
-  fetch(`${getBaseUrl()}${url}`, {
+  fetch(`${BASE_URL}${url}`, {
     method,
     headers: getHeaders(),
     body: JSON.stringify(data)
@@ -35,7 +29,7 @@ const handleResponse = response => {
 
 const http = {
   get: async url => {
-    const response = await fetch(`${getBaseUrl()}${url}`, {
+    const response = await fetch(`${BASE_URL}${url}`, {
       headers: getHeaders()
     });
     return handleResponse(response);

@@ -1,12 +1,12 @@
 /* eslint-disable global-require */
-require('dotenv').config();
+process.loadEnvFile();
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
 const fs = require('fs');
+const webpack = require('webpack');
 
-const {NODE_ENV, PORT} = process.env;
+const {NODE_ENV, PORT, BASE_URL} = process.env;
 
 const isProduction = NODE_ENV === 'production';
 
@@ -25,7 +25,7 @@ const rules = [
   },
   {
     test: /\.css$/,
-    use: ['style-loader', 'css-loader']
+    use: ['style-loader', 'css-loader', 'postcss-loader']
   },
   {
     test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
@@ -44,7 +44,9 @@ const plugins = [
     favicon: 'public/favicon.png',
     hash: true
   }),
-  new Dotenv()
+  new webpack.DefinePlugin({
+    BASE_URL: JSON.stringify(BASE_URL)
+  })
 ];
 
 const buildAlias = () => {

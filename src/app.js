@@ -1,24 +1,27 @@
-import {Provider} from 'react-redux';
-import {HistoryRouter as Router} from 'redux-first-history/rr6';
-import CssBaseline from '@mui/material/CssBaseline';
-import {ThemeProvider} from '@mui/material/styles';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
-import {history, store} from '@/app/store';
-import Routes from '@/routes';
-import Snackbar from '@/components/Snackbar';
-import theme from '@/styles/theme';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import Routes from './routes';
+import './styles.css';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false
+    }
+  }
+});
 
 function App() {
   return (
-    <Provider store={store}>
-      <Router history={history}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Snackbar />
-          <Routes />
-        </ThemeProvider>
-      </Router>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Header />
+      <main>
+        <Routes />
+      </main>
+      <Footer />
+    </QueryClientProvider>
   );
 }
 

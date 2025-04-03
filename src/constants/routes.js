@@ -1,4 +1,5 @@
 export default {
   HOME: '/',
-  LOGIN: '/login'
+  LOGIN: '/login',
+  MAINTENANCE: '/maintenance'
 };
