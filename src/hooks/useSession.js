@@ -6,7 +6,7 @@ import useToken from './useToken';
 
 const useSession = () => {
   const query = useQueryParams();
-  const token = query.get('token');
+  const token = query.get('accessToken');
   const {setToken} = useToken();
   const {user} = useCurrentUser();
 

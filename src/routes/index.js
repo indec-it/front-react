@@ -7,7 +7,7 @@ import Login from '@/pages/Login';
 import Maintenance from '@/pages/Maintenance';
 
 export default function Routes() {
-  const {user} = useSession();
+  const [user] = useSession();
   return (
     <ReactRouterRoutes>
       <Route path={routes.MAINTENANCE} element={<Maintenance />} />

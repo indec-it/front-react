@@ -13,7 +13,7 @@ export const useGetCurrentUser = () => {
   const {token} = useToken();
   return useQuery({
     queryKey: ['user', token],
-    queryFn: () => http.get(apiRoutes.CURRENT_USER),
+    queryFn: () => http.post(apiRoutes.VALIDATE_SESSION, {token}),
     enabled: !!token
   });
 };
