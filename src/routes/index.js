@@ -1,4 +1,5 @@
 import {Routes as ReactRouterRoutes, Route} from 'react-router';
+import {Loading} from '@indec/react-commons/components';
 
 import {routes} from '@/constants';
 import useSession from '@/hooks/useSession';
@@ -7,7 +8,12 @@ import Login from '@/pages/Login';
 import Maintenance from '@/pages/Maintenance';
 
 export default function Routes() {
-  const [user] = useSession();
+  const [user, isLoading] = useSession();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <ReactRouterRoutes>
       <Route path={routes.MAINTENANCE} element={<Maintenance />} />
