@@ -1,9 +1,20 @@
-import logo from '../../public/logo.png';
+import {useNavigate} from 'react-router-dom';
+import {Header as IndecHeader} from '@indec/react-commons/components';
+
+const items = [{path: 'home', name: 'Home'}];
 
 export default function Header() {
-  return (
-    <header className="bg-white shadow-sm h-20 flex items-center gap-2 justify-between p-4">
-      <img src={logo} alt="INDEC" className="h-12 w-auto xs:h-14 md:h-16" />
-    </header>
-  );
+  const navigate = useNavigate();
+  const token = null;
+  const user = null;
+
+  const handleSetButton = selectedModule => {
+    navigate(selectedModule);
+  };
+
+  const handleLogout = () => {
+    window.location.href = '/';
+  };
+
+  return <IndecHeader token={token} user={user} items={items} onRedirect={handleSetButton} onLogout={handleLogout} />;
 }

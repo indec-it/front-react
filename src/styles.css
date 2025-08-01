@@ -1,3 +1,5 @@
+@import '@fontsource/montserrat';
+@import '@indec/react-commons/output.css';
 @import 'tailwindcss';
 
 html,
@@ -17,4 +19,8 @@ body {
 body {
   font-family: Montserrat, Helvetica, sans-serif;
   background-color: #fafafa;
+}
+
+button {
+  cursor: pointer;
 }
